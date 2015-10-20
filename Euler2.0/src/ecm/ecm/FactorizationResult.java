@@ -1,8 +1,11 @@
 package ecm;
 
+import java.awt.BorderLayout;
+import java.awt.Frame;
 import java.math.BigInteger;
 
-public class FactorizationResult
+@SuppressWarnings("serial")
+public class FactorizationResult extends ecm
 {
 	  
 	  public BigInteger[] factor = null;
@@ -21,14 +24,36 @@ public class FactorizationResult
 		    System.arraycopy(exp2, 0, exp, 0, nbFactors);
 	  }
 	  
-	  public String toString()
+	  public FactorizationResult(String factorString) 
 	  {
-		  String res = ""+factor[0]+"^"+exp[0];
+		  super();
+	      Frame frame = new Frame("Integer factorization using ECM/SIQS");
+	      frame.addWindowListener(new PanelWindowListener());
+	      frame.setLayout(new BorderLayout());
+	      frame.add("Center", this);
+	      frame.setSize(620, 420);
+	      this.init();
+	      this.start();
+	      frame.setVisible(false);   
+	      this.getFactorizationResult(factorString);	 
+		    
+
+	  }
+
+	public String toString()
+	  {
+		  String res = ""+PD[0]+"^"+Exp[0];
 		  
-		  for (int i=1; i<nbFactors; i++)
-			  res += "+"+factor[i]+"^"+exp[i];
+		  for (int i=1; i<NbrFactors; i++)
+			  res += " * "+PD[i]+"^"+Exp[i];
 		  
 		  return res;
 		  
 	  }
+	
+	public static void main(String[] args)
+	{
+		
+		new FactorizationResult("28");
+	}
 }

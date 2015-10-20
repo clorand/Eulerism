@@ -42,7 +42,7 @@ public class ecm extends Applet implements Runnable, factorApplet
   final BigInteger SS[] = new BigInteger[4000]; // For intermediate factors 
   final BigInteger PD[] = new BigInteger[4000]; // and prime factors
   boolean numberIsNegative;
-  private final int Exp[] = new int[4000];
+  protected final int Exp[] = new int[4000];
   private final int Typ[] = new int[4000];
   final BigInteger PD1[] = new BigInteger[4000];
   final int Exp1[] = new int[4000];
@@ -553,7 +553,7 @@ public class ecm extends Applet implements Runnable, factorApplet
   
   public FactorizationResult getFactorizationResult(String b)
   {
-      this.textNumber.setText(""+b);
+      this.textNumber.setText(b);
       
       ActionEvent ae = 
               new ActionEvent((Object)this.textNumber, ActionEvent.ACTION_PERFORMED, "");

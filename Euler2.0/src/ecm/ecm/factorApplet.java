@@ -1,6 +1,5 @@
 package ecm;
 
-import java.awt.*;
 import java.math.*;
 
 interface factorApplet
