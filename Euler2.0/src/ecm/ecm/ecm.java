@@ -40,9 +40,9 @@ public class ecm extends Applet implements Runnable, factorApplet
   int numberThreads = 1;
   boolean forcedECM = false;
   final BigInteger SS[] = new BigInteger[4000]; // For intermediate factors 
-  final BigInteger PD[] = new BigInteger[4000]; // and prime factors
+  private final BigInteger PD[] = new BigInteger[4000]; // and prime factors
   boolean numberIsNegative;
-  protected final int Exp[] = new int[4000];
+  private final int Exp[] = new int[4000];
   private final int Typ[] = new int[4000];
   final BigInteger PD1[] = new BigInteger[4000];
   final int Exp1[] = new int[4000];
@@ -369,7 +369,8 @@ public class ecm extends Applet implements Runnable, factorApplet
   final int aiJ00[][] = new int[PWmax][NLen];
   final int aiJ01[][] = new int[PWmax][NLen];
   int NumberLength; /* Length of multiple precision nbrs */
-  int NbrFactors, NbrFactors1;
+  private int NbrFactors;
+int NbrFactors1;
   int EC; /* Elliptic Curve number */
   /* Used inside GCD calculations in multiple precision numbers */
   final int CalcAuxGcdU[] = new int[NLen];
@@ -544,31 +545,20 @@ public class ecm extends Applet implements Runnable, factorApplet
       ecm1.start();
       frame.setVisible(false);   
 
-      FactorizationResult res = ecm1.getFactorizationResult("123456789");
-           
-      System.out.println(""+res);
     }
   }
   
   
-  public FactorizationResult getFactorizationResult(String b)
+  public void launchFactorization(String b)
   {
       this.textNumber.setText(b);
+      
+      startNewFactorization(true);    // Start new factorization.
       
       ActionEvent ae = 
               new ActionEvent((Object)this.textNumber, ActionEvent.ACTION_PERFORMED, "");
            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(ae);
-           
-       
-      String state = getState();
-           
-      while (state.charAt(0)==',')
-      {
-    	  state = getState();
-    	 // System.out.println(state);
-      }
-           
-      return  new FactorizationResult(this.PD, this.Exp, this.NbrFactors );
+                 
   }
 
 
@@ -590,9 +580,9 @@ public class ecm extends Applet implements Runnable, factorApplet
     layout("Number to factor:", false);
     textNumber.setText(NbrToFactor.toString());
     startNewFactorization(true);       // Request complete factorization
-    System.arraycopy(PD, 0, Primes, 0, NbrFactors);
-    System.arraycopy(Exp, 0, Exponents, 0, NbrFactors);
-    return NbrFactors;
+    System.arraycopy(getPD(), 0, Primes, 0, getNbrFactors());
+    System.arraycopy(getExp(), 0, Exponents, 0, getNbrFactors());
+    return getNbrFactors();
   }
 
   void layout(final String caption, final boolean editable)
@@ -684,10 +674,10 @@ public class ecm extends Applet implements Runnable, factorApplet
         indexComma = indexEnd;
       }
       NumberToFactor = BigInt1;
-      NbrFactors = 0;
+      setNbrFactors(0);
       for (i = 0; i < 400; i++)
       {
-        Exp[i] = Typ[i] = 0;
+        getExp()[i] = Typ[i] = 0;
       }
       while (index < indexComma)
       {
@@ -710,25 +700,25 @@ public class ecm extends Applet implements Runnable, factorApplet
         switch (state.charAt(indexTimes - 1))
         {
           case ')' :
-            Typ[NbrFactors] =
+            Typ[getNbrFactors()] =
               Integer.parseInt(state.substring(indexParen + 1, indexTimes - 1));
             break;
           default :
-            Typ[NbrFactors] = 0; /* Prime */
+            Typ[getNbrFactors()] = 0; /* Prime */
         }
-        PD[NbrFactors] = new BigInteger(state.substring(index, indexExp));
+        getPD()[getNbrFactors()] = new BigInteger(state.substring(index, indexExp));
         if (indexExp == indexParen)
         {
-          Exp[NbrFactors] = 1;
+          getExp()[getNbrFactors()] = 1;
         }
         else
         {
-          Exp[NbrFactors] =
+          getExp()[getNbrFactors()] =
             Integer.parseInt(state.substring(indexExp + 1, indexParen));
         }
         NumberToFactor =
-          NumberToFactor.multiply(PD[NbrFactors].pow(Exp[NbrFactors]));
-        NbrFactors++;
+          NumberToFactor.multiply(getPD()[getNbrFactors()].pow(getExp()[getNbrFactors()]));
+        setNbrFactors(getNbrFactors() + 1);
         index = indexNew;
       } /* end while */
       lModularMult = -1;
@@ -851,17 +841,17 @@ public class ecm extends Applet implements Runnable, factorApplet
         {
         }
       }
-      for (i = 0; i < (Computing3Squares ? NbrFactors1 : NbrFactors); i++)
+      for (i = 0; i < (Computing3Squares ? NbrFactors1 : getNbrFactors()); i++)
       {
         if (i != 0)
         {
           state.append('x');
         }
-        state.append(PD[i].toString());
-        if (Exp[i] != 1)
+        state.append(getPD()[i].toString());
+        if (getExp()[i] != 1)
         {
           state.append('^');
-          state.append(Exp[i]);
+          state.append(getExp()[i]);
         }
         if (Typ[i] != 0)
         {
@@ -967,7 +957,7 @@ public class ecm extends Applet implements Runnable, factorApplet
       addStringToLabel("-");         // Indicate number is negative.
     }
     insertBigNbr(NumberToFactor);
-    if (NbrFactors == 1 && Exp[0] == 1)
+    if (getNbrFactors() == 1 && getExp()[0] == 1)
     {
       if (Typ[0] > 0)
       {
@@ -995,17 +985,17 @@ public class ecm extends Applet implements Runnable, factorApplet
       {
         addStringToLabel("=");
       }
-      for (i = 0; i < NbrFactors; i++)
+      for (i = 0; i < getNbrFactors(); i++)
       {
         if (i != 0)
         {
           addStringToLabel("x");
         }
-        insertBigNbr(PD[i]);
-        if (Exp[i] != 1)
+        insertBigNbr(getPD()[i]);
+        if (getExp()[i] != 1)
         {
           addStringToLabel("^");
-          addStringToLabel(String.valueOf(Exp[i]));
+          addStringToLabel(String.valueOf(getExp()[i]));
         }
         if (Typ[i] > 0)
         {
@@ -1093,44 +1083,44 @@ public class ecm extends Applet implements Runnable, factorApplet
     int g,exp;
 
     /* Insert input factor */
-    for (g = NbrFactors - 1; g >= 0; g--)
+    for (g = getNbrFactors() - 1; g >= 0; g--)
     {
-      PD[NbrFactors] = PD[g].gcd(InputFactor);
-      if (PD[NbrFactors].equals(BigInt1) || PD[NbrFactors].equals(PD[g]))
+      getPD()[getNbrFactors()] = getPD()[g].gcd(InputFactor);
+      if (getPD()[getNbrFactors()].equals(BigInt1) || getPD()[getNbrFactors()].equals(getPD()[g]))
       {
         continue;
       }
-      for (exp=0; PD[g].remainder(PD[NbrFactors]).signum() == 0; exp++)
+      for (exp=0; getPD()[g].remainder(getPD()[getNbrFactors()]).signum() == 0; exp++)
       {
-        PD[g] = PD[g].divide(PD[NbrFactors]);
+        getPD()[g] = getPD()[g].divide(getPD()[getNbrFactors()]);
       }
-      Exp[NbrFactors] = Exp[g] * exp;
+      getExp()[getNbrFactors()] = getExp()[g] * exp;
       if (Typ[g] < 100000000)
       {
         Typ[g] = -EC;
-        Typ[NbrFactors] = -TYP_EC - EC;
+        Typ[getNbrFactors()] = -TYP_EC - EC;
       }
       else if (Typ[g] < 150000000)
       {
-        Typ[NbrFactors] = -Typ[g];
+        Typ[getNbrFactors()] = -Typ[g];
         Typ[g] = TYP_AURIF - Typ[g];
       }
       else if (Typ[g] < 200000000)
       {
-        Typ[NbrFactors] = -Typ[g];
+        Typ[getNbrFactors()] = -Typ[g];
         Typ[g] = TYP_TABLE - Typ[g];
       }
       else if (Typ[g] < 250000000)
       {
-        Typ[NbrFactors] = -Typ[g];
+        Typ[getNbrFactors()] = -Typ[g];
         Typ[g] = TYP_SIQS - Typ[g];
       }
       else
       {
-        Typ[NbrFactors] = -Typ[g];
+        Typ[getNbrFactors()] = -Typ[g];
         Typ[g] = TYP_LEHMAN - Typ[g];
       }
-      NbrFactors++;
+      setNbrFactors(getNbrFactors() + 1);
     }
     SortFactorsInputNbr();
   }
@@ -1140,18 +1130,18 @@ public class ecm extends Applet implements Runnable, factorApplet
     int g, i, j;
     BigInteger Nbr1;
 
-    for (g = 0; g < NbrFactors - 1; g++)
+    for (g = 0; g < getNbrFactors() - 1; g++)
     {
-      for (j = g + 1; j < NbrFactors; j++)
+      for (j = g + 1; j < getNbrFactors(); j++)
       {
-        if (PD[g].compareTo(PD[j]) > 0)
+        if (getPD()[g].compareTo(getPD()[j]) > 0)
         {
-          Nbr1 = PD[g];
-          PD[g] = PD[j];
-          PD[j] = Nbr1;
-          i = Exp[g];
-          Exp[g] = Exp[j];
-          Exp[j] = i;
+          Nbr1 = getPD()[g];
+          getPD()[g] = getPD()[j];
+          getPD()[j] = Nbr1;
+          i = getExp()[g];
+          getExp()[g] = getExp()[j];
+          getExp()[j] = i;
           i = Typ[g];
           Typ[g] = Typ[j];
           Typ[j] = i;
@@ -1174,7 +1164,7 @@ public class ecm extends Applet implements Runnable, factorApplet
       }
     }
     onlyFactoring = completefactorization ^ true;
-    lModularMult = OldTimeElapsed = NbrFactors = EC = 0;
+    lModularMult = OldTimeElapsed = setNbrFactors(EC = 0);
     if (completefactorization)
     {
       factorize();
@@ -1223,7 +1213,7 @@ public class ecm extends Applet implements Runnable, factorApplet
     Old = System.currentTimeMillis();
     if (onlyFactoring)
     {
-      if (NbrFactors == 0)
+      if (getNbrFactors() == 0)
       {
         lowerTextArea.setText("Computing input expression...");
         try
@@ -1253,7 +1243,7 @@ public class ecm extends Applet implements Runnable, factorApplet
     }
     else
     {
-      if (NbrFactors == 0)
+      if (getNbrFactors() == 0)
       {
         NumberToFactor = new BigInteger(textNumber.getText().trim());
       }
@@ -1280,17 +1270,17 @@ public class ecm extends Applet implements Runnable, factorApplet
     }
     try
     {
-      if (NbrFactors == 0)
+      if (getNbrFactors() == 0)
       {
         lowerTextArea.setText(
           "Searching for small factors (less than 131072).");
-        TestComp = GetSmallFactors(NumberToFactor, PD, Exp, Typ, 0);
+        TestComp = GetSmallFactors(NumberToFactor, getPD(), getExp(), Typ, 0);
         if (TestComp != 1)
         {                      // There are factors greater than 131071.
-          PD[NbrFactors] = BigIntToBigNbr(TestNbr, NumberLength);
-          Exp[NbrFactors] = 1;
-          Typ[NbrFactors] = -1; /* Unknown */
-          NbrFactors++;
+          getPD()[getNbrFactors()] = BigIntToBigNbr(TestNbr, NumberLength);
+          getExp()[getNbrFactors()] = 1;
+          Typ[getNbrFactors()] = -1; /* Unknown */
+          setNbrFactors(getNbrFactors() + 1);
           ShowUpperPane();
           if (batchFinished || !batchPrime)
           {
@@ -1304,9 +1294,9 @@ public class ecm extends Applet implements Runnable, factorApplet
         }
         else                   // No more factors
         {
-          if (batchPrime && NbrFactors == 1 && Typ[0] == 0)
+          if (batchPrime && getNbrFactors() == 1 && Typ[0] == 0)
           {
-            NbrFactors = 0;    // Indicate number is prime.
+            setNbrFactors(0);    // Indicate number is prime.
             return;
           }
         }
@@ -1315,7 +1305,7 @@ public class ecm extends Applet implements Runnable, factorApplet
       factor_loop : for (;;)
       {
         ShowUpperPane();
-        for (i = 0; i < NbrFactors; i++)
+        for (i = 0; i < getNbrFactors(); i++)
         {
           if (Typ[i] < 0)
           { /* Unknown */
@@ -1325,7 +1315,7 @@ public class ecm extends Applet implements Runnable, factorApplet
               SortFactorsInputNbr();
               continue factor_loop;
             }
-            if (PD[i].bitLength() <= 33)
+            if (getPD()[i].bitLength() <= 33)
             {
               j = 0;
             }
@@ -1334,15 +1324,15 @@ public class ecm extends Applet implements Runnable, factorApplet
               lowerTextArea.setText("Before calling prime check routine.");
               final long oldModularMult = lModularMult;
               timePrimalityTests -= System.currentTimeMillis();
-              j = AprtCle(PD[i]);
+              j = AprtCle(getPD()[i]);
               timePrimalityTests += System.currentTimeMillis();
               nbrPrimalityTests++;
               primeModMult += lModularMult - oldModularMult;
               if (!batchFinished && batchPrime)
               {
-                if (NbrFactors < 2)
+                if (getNbrFactors() < 2)
                 {            // If no factors found in trial factoring...
-                  NbrFactors = j;
+                  setNbrFactors(j);
                 }
                 return;
               }
@@ -1384,7 +1374,7 @@ public class ecm extends Applet implements Runnable, factorApplet
             continue factor_loop;
           }
         }
-        for (i = 0; i < NbrFactors; i++)
+        for (i = 0; i < getNbrFactors(); i++)
         {
           EC = Typ[i];
           if (EC > 0 && EC < TYP_EC && EC != TYP_AURIF
@@ -1392,7 +1382,7 @@ public class ecm extends Applet implements Runnable, factorApplet
           { /* Composite */
             EC %= 50000000;
             timeECM -= System.currentTimeMillis();
-            NN = fnECM(PD[i], i);
+            NN = fnECM(getPD()[i], i);
             timeECM += System.currentTimeMillis();
             nbrECM++;
             if (NN.equals(BigInt1))
@@ -1400,7 +1390,7 @@ public class ecm extends Applet implements Runnable, factorApplet
               timeSIQS -= System.currentTimeMillis();
               Siqs SIQS = new Siqs(this, onlyFactoring, NumberLength,
                                    numberThreads);
-              NN = SIQS.FactoringSIQS(PD[i]);
+              NN = SIQS.FactoringSIQS(getPD()[i]);
               SIQS = null;
               timeSIQS += System.currentTimeMillis();
               nbrSIQS++;
@@ -1427,35 +1417,35 @@ public class ecm extends Applet implements Runnable, factorApplet
           StringToLabel = ""; // Start new line.
           addStringToLabel("Number of divisors: ");
           N1 = BigInt1;
-          for (i = 0; i < NbrFactors; i++)
+          for (i = 0; i < getNbrFactors(); i++)
           {
-            N1 = N1.multiply(BigInteger.valueOf(Exp[i] + 1));
+            N1 = N1.multiply(BigInteger.valueOf(getExp()[i] + 1));
           }
           insertBigNbr(N1); // Show number of divisors.
           textAreaContents += StringToLabel + "\n\n";
           StringToLabel = ""; // Start new line.
           addStringToLabel("Sum of divisors: ");
           N1 = BigInt1;
-          for (i = 0; i < NbrFactors; i++)
+          for (i = 0; i < getNbrFactors(); i++)
           {
             N1 =
-              N1.multiply(PD[i].pow(Exp[i] + 1).subtract(BigInt1)).divide(
-                PD[i].subtract(BigInt1));
+              N1.multiply(getPD()[i].pow(getExp()[i] + 1).subtract(BigInt1)).divide(
+                getPD()[i].subtract(BigInt1));
           }
           insertBigNbr(N1); // Show sum of divisors.
           textAreaContents += StringToLabel + "\n\n";
           StringToLabel = ""; // Start new line.
           addStringToLabel("Euler's Totient: ");
           N1 = NumberToFactor;
-          for (i = 0; i < NbrFactors; i++)
+          for (i = 0; i < getNbrFactors(); i++)
           {
-            N1 = N1.multiply(PD[i].subtract(BigInt1)).divide(PD[i]);
+            N1 = N1.multiply(getPD()[i].subtract(BigInt1)).divide(getPD()[i]);
           }
           insertBigNbr(N1);
           j = 1; // Compute Moebius
-          for (i = 0; i < NbrFactors; i++)
+          for (i = 0; i < getNbrFactors(); i++)
           {
-            if (Exp[i] == 1)
+            if (getExp()[i] == 1)
             {
               j = -j;
             }
@@ -1466,8 +1456,8 @@ public class ecm extends Applet implements Runnable, factorApplet
           } // Show Euler's totient and Moebius
           textAreaContents += StringToLabel + "\n\nMoebius: " + j;
           StringToLabel = "\n\nSum of squares: "; // Start new line.
-          ComputeFourSquares(PD, Exp); // Quad1^2 + Quad2^2 + Quad3^2 + Quad4^2
-          NbrFactors1 = NbrFactors;
+          ComputeFourSquares(getPD(), getExp()); // Quad1^2 + Quad2^2 + Quad3^2 + Quad4^2
+          NbrFactors1 = getNbrFactors();
           if (Quad4.signum() != 0)
           { // Check if four squares are really needed.
             j = NumberToFactor.getLowestSetBit();
@@ -1511,9 +1501,9 @@ public class ecm extends Applet implements Runnable, factorApplet
                   {
                     continue;
                   } // This value of c does not work
-                  PD1[NbrFactors] = BigIntToBigNbr(TestNbr, NumberLength);
-                  Exp1[NbrFactors] = 1;
-                  NbrFactors++;
+                  PD1[getNbrFactors()] = BigIntToBigNbr(TestNbr, NumberLength);
+                  Exp1[getNbrFactors()] = 1;
+                  setNbrFactors(getNbrFactors() + 1);
                   if (ComputeFourSquares(PD1, Exp1))
                   { // Quad1^2 + Quad2^2
                     break;
@@ -1537,7 +1527,7 @@ public class ecm extends Applet implements Runnable, factorApplet
               Computing3Squares = false;
             }
           }
-          NbrFactors = NbrFactors1;
+          setNbrFactors(NbrFactors1);
           if (Quad4.signum() == 0)
           {
             if (Quad3.signum() == 0)
@@ -1680,23 +1670,23 @@ public class ecm extends Applet implements Runnable, factorApplet
     boolean checkExpParity = false;
 
     NumberLength = BigNbrToBigInt(NumberToFactor, TestNbr);
-    NbrFactors = 0;
+    setNbrFactors(0);
     for (i = 0; i < 400; i++)
     {
       Exp[i] = Typ[i] = 0;
     }
     while ((TestNbr[0] & 1) == 0)
     { /* N even */
-      if (Exp[NbrFactors] == 0)
+      if (Exp[getNbrFactors()] == 0)
       {
-        PD[NbrFactors] = BigInt2;
+        PD[getNbrFactors()] = BigInt2;
       }
-      Exp[NbrFactors]++;
+      Exp[getNbrFactors()]++;
       DivBigNbrByLong(TestNbr, 2, TestNbr, NumberLength);
     }
-    if (Exp[NbrFactors] != 0)
+    if (Exp[getNbrFactors()] != 0)
     {
-      NbrFactors++;
+      setNbrFactors(getNbrFactors() + 1);
     }
     while (RemDivBigNbrByLong(TestNbr, 3, NumberLength) == 0)
     {
@@ -1704,20 +1694,20 @@ public class ecm extends Applet implements Runnable, factorApplet
       {
         checkExpParity ^= true;
       }
-      if (Exp[NbrFactors] == 0)
+      if (Exp[getNbrFactors()] == 0)
       {
-        PD[NbrFactors] = BigInt3;
+        PD[getNbrFactors()] = BigInt3;
       }
-      Exp[NbrFactors]++;
+      Exp[getNbrFactors()]++;
       DivBigNbrByLong(TestNbr, 3, TestNbr, NumberLength);
     }
     if (checkExpParity)
     {
       return -1; /* Discard it */
     }
-    if (Exp[NbrFactors] != 0)
+    if (Exp[getNbrFactors()] != 0)
     {
-      NbrFactors++;
+      setNbrFactors(getNbrFactors() + 1);
     }
     Div = 5;
     TestComp = (long)TestNbr[0] + ((long)TestNbr[1] << 31);
@@ -1746,11 +1736,11 @@ public class ecm extends Applet implements Runnable, factorApplet
           {
             checkExpParity ^= true;
           }
-          if (Exp[NbrFactors] == 0)
+          if (Exp[getNbrFactors()] == 0)
           {
-            PD[NbrFactors] = BigInteger.valueOf(Div);
+            PD[getNbrFactors()] = BigInteger.valueOf(Div);
           }
-          Exp[NbrFactors]++;
+          Exp[getNbrFactors()]++;
           DivBigNbrByLong(TestNbr, Div, TestNbr, NumberLength);
           TestComp = (long)TestNbr[0] + ((long)TestNbr[1] << 31);
           if (TestComp < 0)
@@ -1773,9 +1763,9 @@ public class ecm extends Applet implements Runnable, factorApplet
         {
           return -1; /* Discard it */
         }
-        if (Exp[NbrFactors] != 0)
+        if (Exp[getNbrFactors()] != 0)
         {
-          NbrFactors++;
+          setNbrFactors(getNbrFactors() + 1);
         }
       }
       Div += 2;
@@ -1785,14 +1775,14 @@ public class ecm extends Applet implements Runnable, factorApplet
         {
           return -1; /* Discard it */
         }
-        if (Exp[NbrFactors] != 0)
+        if (Exp[getNbrFactors()] != 0)
         {
-          NbrFactors++;
+          setNbrFactors(getNbrFactors() + 1);
         }
-        PD[NbrFactors] = BigInteger.valueOf(TestComp);
-        Exp[NbrFactors] = 1;
+        PD[getNbrFactors()] = BigInteger.valueOf(TestComp);
+        Exp[getNbrFactors()] = 1;
         TestComp = 1;
-        NbrFactors++;
+        setNbrFactors(getNbrFactors() + 1);
         break;
       }
     } /* end while */
@@ -1802,7 +1792,7 @@ public class ecm extends Applet implements Runnable, factorApplet
   int PowerCheck(final int i)
   {
     long New;
-    final int maxExpon = (PD[i].bitLength() - 1) / 17;
+    final int maxExpon = (getPD()[i].bitLength() - 1) / 17;
     int h, j;
     long modulus;
     int intLog2N;
@@ -1816,7 +1806,7 @@ public class ecm extends Applet implements Runnable, factorApplet
     for (h = 0; h < prime2310x1.length; h++)
     {
       final long testprime = prime2310x1[h];
-      final long mod = PD[i].mod(BigInteger.valueOf(testprime)).intValue();
+      final long mod = getPD()[i].mod(BigInteger.valueOf(testprime)).intValue();
       if (expon2 && modPow(mod, testprime / 2, testprime) > 1)
         expon2 = false;
       if (expon3 && modPow(mod, testprime / 3, testprime) > 1)
@@ -1854,7 +1844,7 @@ public class ecm extends Applet implements Runnable, factorApplet
         {
           if (primes[j])
           {
-            modulus = PD[i].mod(BigInteger.valueOf(j)).longValue();
+            modulus = getPD()[i].mod(BigInteger.valueOf(j)).longValue();
             if (modPow(modulus, j / h, j) > 1)
             {
               for (j = h; j <= maxExpon; j += h)
@@ -1900,10 +1890,10 @@ public class ecm extends Applet implements Runnable, factorApplet
           throw new ArithmeticException();
         }
       }
-      intLog2N = PD[i].bitLength() - 1;
+      intLog2N = getPD()[i].bitLength() - 1;
       log2N =
         intLog2N
-          + Math.log(PD[i].shiftRight(intLog2N - 32).add(BigInt1).doubleValue())
+          + Math.log(getPD()[i].shiftRight(intLog2N - 32).add(BigInt1).doubleValue())
             / Math.log(2)
           - 32;
       log2N /= Exponent;
@@ -1923,11 +1913,11 @@ public class ecm extends Applet implements Runnable, factorApplet
       {
         rootN1 = root.pow(Exponent - 1);
         rootN = root.multiply(rootN1);
-        dif = PD[i].subtract(rootN);
+        dif = getPD()[i].subtract(rootN);
         if (dif.signum() == 0)
         { // Perfect power
-          PD[i] = root;
-          Exp[i] *= Exponent;
+          getPD()[i] = root;
+          getExp()[i] *= Exponent;
           return 1;
         }
         nextroot =
@@ -2256,7 +2246,7 @@ public class ecm extends Applet implements Runnable, factorApplet
       dif = NFp1.subtract(rootN);
       if (dif.signum() == 0)
       { // Perfect power
-        Cunningham(root, Exponent, BigInt1.negate(), PD[NbrFactors - 1]);
+        Cunningham(root, Exponent, BigInt1.negate(), getPD()[getNbrFactors() - 1]);
         return true;
       }
       nextroot =
@@ -2277,7 +2267,7 @@ public class ecm extends Applet implements Runnable, factorApplet
       dif = NFm1.subtract(rootN);
       if (dif.signum() == 0)
       { // Perfect power
-        Cunningham(root, Exponent, BigInt1, PD[NbrFactors - 1]);
+        Cunningham(root, Exponent, BigInt1, getPD()[getNbrFactors() - 1]);
         return true;
       }
       nextroot =
@@ -2317,7 +2307,7 @@ public class ecm extends Applet implements Runnable, factorApplet
         j = LucasAct.compareTo(NumberToFactor);
         if (j == 0)
         {
-          FactorLucas(i, PD[NbrFactors - 1]);
+          FactorLucas(i, getPD()[getNbrFactors() - 1]);
           return;
         }
         if (j > 0)
@@ -2356,7 +2346,7 @@ public class ecm extends Applet implements Runnable, factorApplet
         j = FibonAct.compareTo(NumberToFactor);
         if (j == 0)
         {
-          FactorFibonacci(i, PD[NbrFactors - 1]);
+          FactorFibonacci(i, getPD()[getNbrFactors() - 1]);
           return;
         }
         if (j > 0)
@@ -7134,11 +7124,11 @@ public class ecm extends Applet implements Runnable, factorApplet
     }
     for (k = 0; k < NroFact; k++)
     {
-      PD[NbrFactors + k - 1] = Factores[k];
-      Exp[NbrFactors + k - 1] = 1;
-      Typ[NbrFactors + k - 1] = -1; /* Unknown */
+      getPD()[getNbrFactors() + k - 1] = Factores[k];
+      getExp()[getNbrFactors() + k - 1] = 1;
+      Typ[getNbrFactors() + k - 1] = -1; /* Unknown */
     }
-    NbrFactors += k - 1;
+    setNbrFactors(getNbrFactors() + k - 1);
   }
 
   int JacobiSymbol(int M, int Q)
@@ -7379,7 +7369,7 @@ public class ecm extends Applet implements Runnable, factorApplet
       Quad2 = BigInt0;
       Quad3 = BigInt0;
       Quad4 = BigInt0;
-      for (indexPrimes = NbrFactors - 1; indexPrimes >= 0; indexPrimes--)
+      for (indexPrimes = getNbrFactors() - 1; indexPrimes >= 0; indexPrimes--)
       {
         if (Exp[indexPrimes] % 2 == 0)
         {
@@ -7577,7 +7567,7 @@ public class ecm extends Applet implements Runnable, factorApplet
         Quad2 = Tmp2;
         Quad1 = Tmp1;
       } /* end for indexPrimes */
-      for (indexPrimes = 0; indexPrimes < NbrFactors; indexPrimes++)
+      for (indexPrimes = 0; indexPrimes < getNbrFactors(); indexPrimes++)
       {
         p = PD[indexPrimes].pow(Exp[indexPrimes] / 2);
         Quad1 = Quad1.multiply(p);
@@ -7848,7 +7838,7 @@ public class ecm extends Applet implements Runnable, factorApplet
     {
       if (AbsNumberToFactor.compareTo(BigInt3) <= 0)
       {
-        NbrFactors = 0;     // Indicate it is prime (2 or 3).
+        setNbrFactors(0);     // Indicate it is prime (2 or 3).
       }
       else if (BigInt3.modPow(AbsNumberToFactor.subtract(BigInt1),
                     AbsNumberToFactor).equals(BigInt1))
@@ -7858,16 +7848,16 @@ public class ecm extends Applet implements Runnable, factorApplet
           long modulus = AbsNumberToFactor.longValue();
           if (modulus % 2 == 0)
           {
-            NbrFactors = 1;     // Indicate it is composite.
+            setNbrFactors(1);     // Indicate it is composite.
           }
           else
           {
-            NbrFactors = 0;     // Indicate prime in advance.
+            setNbrFactors(0);     // Indicate prime in advance.
             for (long Div = 3; Div*Div <= modulus; Div += 2)
             {
               if (modulus % Div == 0)
               {
-                NbrFactors = 1;     // Indicate it is composite.
+                setNbrFactors(1);     // Indicate it is composite.
                 break;
               }
             }
@@ -7881,7 +7871,7 @@ public class ecm extends Applet implements Runnable, factorApplet
       }
       else
       {                        // Pseudoprime test indicate composite.
-        NbrFactors = 1;        // Indicate number composite.
+        setNbrFactors(1);        // Indicate number composite.
       }
     }
     else
@@ -7901,8 +7891,8 @@ public class ecm extends Applet implements Runnable, factorApplet
         }
         if (Expon > 0)
         {
-          PD[0] = BigInt2;
-          Exp[0] = Expon;
+          getPD()[0] = BigInt2;
+          getExp()[0] = Expon;
           i++;
         }
         long Div = 3;
@@ -7916,19 +7906,19 @@ public class ecm extends Applet implements Runnable, factorApplet
           }
           if (Expon > 0)
           {
-            PD[i] = BigInteger.valueOf(Div);
-            Exp[i] = Expon;
+            getPD()[i] = BigInteger.valueOf(Div);
+            getExp()[i] = Expon;
             i++;
           }
           Div += 2;
         }
         if (modulus > 1)
         {
-          PD[i] = BigInteger.valueOf(modulus);
-          Exp[i] = 1;
+          getPD()[i] = BigInteger.valueOf(modulus);
+          getExp()[i] = 1;
           i++;
         }
-        NbrFactors = i;
+        setNbrFactors(i);
       }
       else
       {
@@ -7951,7 +7941,7 @@ public class ecm extends Applet implements Runnable, factorApplet
       {
         outputStr.append(" is a unit\n");
       }
-      else if (NbrFactors == 0)
+      else if (getNbrFactors() == 0)
       {
         outputStr.append(" is prime\n");
       }
@@ -7976,17 +7966,17 @@ public class ecm extends Applet implements Runnable, factorApplet
         {
           outputStr.append(" = ");
         }
-        for (i=0; i<NbrFactors; i++)
+        for (i=0; i<getNbrFactors(); i++)
         {
           if (i > 0)
           {
             outputStr.append(" * ");             
           }
-          outputStr.append(PD[i].toString());
-          if (Exp[i] > 1)
+          outputStr.append(getPD()[i].toString());
+          if (getExp()[i] > 1)
           {
             outputStr.append('^');
-            outputStr.append(Exp[i]);
+            outputStr.append(getExp()[i]);
           }
         }
         outputStr.append('\n');
@@ -8002,7 +7992,22 @@ public class ecm extends Applet implements Runnable, factorApplet
     }
     return "";
   }
-  class Command implements ActionListener
+  public int getNbrFactors() {
+	return NbrFactors;
+}
+
+
+public int setNbrFactors(int nbrFactors) {
+	NbrFactors = nbrFactors;
+	return nbrFactors;
+}
+public BigInteger[] getPD() {
+	return PD;
+}
+public int[] getExp() {
+	return Exp;
+}
+class Command implements ActionListener
   {
     int id;
     ecm appletEcm;
