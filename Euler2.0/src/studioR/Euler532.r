@@ -20,7 +20,7 @@ nanobot.phi <- function(theta_, A=1)
   nanobot.phi <- formula
 }
 
-phi   <- nanobot.phi(theta, 10)
+phi   <- nanobot.phi(theta, 0.1)
 
 polar.to.spherical <- function(rho_, theta_, phi_)
 {
