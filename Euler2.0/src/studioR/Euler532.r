@@ -5,7 +5,7 @@ setwd("C:/eclipse/git/Eulerism/Euler2.0/src/studioR")
 #libraries
 library(rgl)
 
-#geodesic equations
+#geodesic equations final version
 
 n     <- 100
 A     <- 1
