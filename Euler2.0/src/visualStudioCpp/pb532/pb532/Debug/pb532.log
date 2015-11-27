@@ -1,0 +1,315 @@
+﻿Build started 27/11/2015 17:20:57.
+     1>Project "c:\Users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\pb532\pb532.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\pb532.unsuccessfulbuild".
+       ClCompile:
+         All outputs are up-to-date.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\BelfiusFlexLab2010\Externals\QUANTLIB\QUANTLIB.CPP /IC:\BelfiusFlexLab2010\Externals\BOOST\V1.52.0.DBB\Include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\pb532.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt pb532.cpp
+         pb532.cpp
+     1>c:\users\loc.finalysegroup\documents\visual studio 2010\projects\pb532\pb532\pb532.h(20): warning C4482: nonstandard extension used: enum 'QuantLib::TrapezoidIntegral::Method' used in qualified name
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\xutility(2227): warning C4996: 'std::_Copy_impl': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\xutility(2212) : see declaration of 'std::_Copy_impl'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(204) : see reference to function template instantiation '_OutIt std::copy<QuantLib::Array::const_iterator,QuantLib::Array::iterator>(_InIt,_InIt,_OutIt)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _InIt=QuantLib::Array::const_iterator
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1258): warning C4996: 'std::_Transform2': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1237) : see declaration of 'std::_Transform2'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(229) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::plus<_Ty>>(_InIt1,_InIt1,_InIt2,_OutIt,_Fn2)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt1=QuantLib::Array::iterator,
+                     _InIt2=QuantLib::Array::const_iterator,
+                     _Fn2=std::plus<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(236) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::iterator,std::binder2nd<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::plus<QuantLib::Real>,
+                     _InIt=QuantLib::Array::iterator,
+                     _Fn1=std::binder2nd<std::plus<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1258): warning C4996: 'std::_Transform2': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1237) : see declaration of 'std::_Transform2'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(245) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::minus<_Ty>>(_InIt1,_InIt1,_InIt2,_OutIt,_Fn2)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt1=QuantLib::Array::iterator,
+                     _InIt2=QuantLib::Array::const_iterator,
+                     _Fn2=std::minus<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(251) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::iterator,std::binder2nd<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::minus<QuantLib::Real>,
+                     _InIt=QuantLib::Array::iterator,
+                     _Fn1=std::binder2nd<std::minus<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1258): warning C4996: 'std::_Transform2': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1237) : see declaration of 'std::_Transform2'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(260) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::multiplies<_Ty>>(_InIt1,_InIt1,_InIt2,_OutIt,_Fn2)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt1=QuantLib::Array::iterator,
+                     _InIt2=QuantLib::Array::const_iterator,
+                     _Fn2=std::multiplies<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(266) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::iterator,std::binder2nd<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::multiplies<QuantLib::Real>,
+                     _InIt=QuantLib::Array::iterator,
+                     _Fn1=std::binder2nd<std::multiplies<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1258): warning C4996: 'std::_Transform2': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1237) : see declaration of 'std::_Transform2'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(275) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::divides<_Ty>>(_InIt1,_InIt1,_InIt2,_OutIt,_Fn2)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt1=QuantLib::Array::iterator,
+                     _InIt2=QuantLib::Array::const_iterator,
+                     _Fn2=std::divides<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(281) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::iterator,std::binder2nd<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::divides<QuantLib::Real>,
+                     _InIt=QuantLib::Array::iterator,
+                     _Fn1=std::binder2nd<std::divides<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\numeric(106): warning C4996: 'std::_Inner_product1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\numeric(90) : see declaration of 'std::_Inner_product1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(397) : see reference to function template instantiation '_Ty std::inner_product<QuantLib::Array::const_iterator,QuantLib::Array::const_iterator,double>(_InIt1,_InIt1,_InIt2,_Ty)' being compiled
+                 with
+                 [
+                     _Ty=double,
+                     _InIt1=QuantLib::Array::const_iterator,
+                     _InIt2=QuantLib::Array::const_iterator
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(412) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::negate<_Ty>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::negate<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1258): warning C4996: 'std::_Transform2': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1237) : see declaration of 'std::_Transform2'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(426) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::plus<_Ty>>(_InIt1,_InIt1,_InIt2,_OutIt,_Fn2)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt1=QuantLib::Array::const_iterator,
+                     _InIt2=QuantLib::Array::const_iterator,
+                     _Fn2=std::plus<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(433) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::binder2nd<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::plus<QuantLib::Real>,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::binder2nd<std::plus<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(440) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::binder1st<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::plus<QuantLib::Real>,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::binder1st<std::plus<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1258): warning C4996: 'std::_Transform2': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1237) : see declaration of 'std::_Transform2'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(451) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::minus<_Ty>>(_InIt1,_InIt1,_InIt2,_OutIt,_Fn2)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt1=QuantLib::Array::const_iterator,
+                     _InIt2=QuantLib::Array::const_iterator,
+                     _Fn2=std::minus<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(458) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::binder2nd<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::minus<QuantLib::Real>,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::binder2nd<std::minus<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(465) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::binder1st<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::minus<QuantLib::Real>,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::binder1st<std::minus<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1258): warning C4996: 'std::_Transform2': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1237) : see declaration of 'std::_Transform2'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(476) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::multiplies<_Ty>>(_InIt1,_InIt1,_InIt2,_OutIt,_Fn2)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt1=QuantLib::Array::const_iterator,
+                     _InIt2=QuantLib::Array::const_iterator,
+                     _Fn2=std::multiplies<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(483) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::binder2nd<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::multiplies<QuantLib::Real>,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::binder2nd<std::multiplies<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(490) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::binder1st<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::multiplies<QuantLib::Real>,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::binder1st<std::multiplies<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1258): warning C4996: 'std::_Transform2': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1237) : see declaration of 'std::_Transform2'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(501) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::divides<_Ty>>(_InIt1,_InIt1,_InIt2,_OutIt,_Fn2)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Ty=QuantLib::Real,
+                     _InIt1=QuantLib::Array::const_iterator,
+                     _InIt2=QuantLib::Array::const_iterator,
+                     _Fn2=std::divides<QuantLib::Real>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(508) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::binder2nd<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::divides<QuantLib::Real>,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::binder2nd<std::divides<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(515) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::binder1st<_Fn2>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Fn2=std::divides<QuantLib::Real>,
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::binder1st<std::divides<QuantLib::Real>>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\array.hpp(524) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::const_iterator,QuantLib::Array::iterator,std::pointer_to_unary_function<_Arg,_Result,_Fn>>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     _Arg=QuantLib::Real,
+                     _Result=QuantLib::Real,
+                     _Fn=QuantLib::Real (__cdecl *)(QuantLib::Real),
+                     _InIt=QuantLib::Array::const_iterator,
+                     _Fn1=std::pointer_to_unary_function<QuantLib::Real,QuantLib::Real,QuantLib::Real (__cdecl *)(QuantLib::Real)>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\numeric(106): warning C4996: 'std::_Inner_product1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\numeric(90) : see declaration of 'std::_Inner_product1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\matrix.hpp(499) : see reference to function template instantiation '_Ty std::inner_product<QuantLib::Array::const_iterator,QuantLib::Matrix::const_column_iterator,double>(_InIt1,_InIt1,_InIt2,_Ty)' being compiled
+                 with
+                 [
+                     _Ty=double,
+                     _InIt1=QuantLib::Array::const_iterator,
+                     _InIt2=QuantLib::Matrix::const_column_iterator
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\xutility(2227): warning C4996: 'std::_Copy_impl': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\xutility(2212) : see declaration of 'std::_Copy_impl'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\matrix.hpp(534) : see reference to function template instantiation '_OutIt std::copy<QuantLib::Matrix::const_row_iterator,QuantLib::Matrix::column_iterator>(_InIt,_InIt,_OutIt)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Matrix::column_iterator,
+                     _InIt=QuantLib::Matrix::const_row_iterator
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1119): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\algorithm(1100) : see declaration of 'std::_Transform1'
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\sampledcurve.hpp(108) : see reference to function template instantiation '_OutIt std::transform<QuantLib::Array::iterator,QuantLib::Array::iterator,T>(_InIt,_InIt,_OutIt,_Fn1)' being compiled
+                 with
+                 [
+                     _OutIt=QuantLib::Array::iterator,
+                     T=std::pointer_to_unary_function<QuantLib::Real,QuantLib::Real,QuantLib::Real (__cdecl *)(QuantLib::Real)>,
+                     _InIt=QuantLib::Array::iterator,
+                     _Fn1=std::pointer_to_unary_function<QuantLib::Real,QuantLib::Real,QuantLib::Real (__cdecl *)(QuantLib::Real)>
+                 ]
+                 c:\belfiusflexlab2010\externals\quantlib\quantlib.cpp\ql\math\sampledcurve.hpp(92) : see reference to function template instantiation 'void QuantLib::SampledCurve::regrid<std::pointer_to_unary_function<_Arg,_Result,_Fn>>(const QuantLib::Array &,T)' being compiled
+                 with
+                 [
+                     _Arg=QuantLib::Real,
+                     _Result=QuantLib::Real,
+                     _Fn=QuantLib::Real (__cdecl *)(QuantLib::Real),
+                     T=std::pointer_to_unary_function<QuantLib::Real,QuantLib::Real,QuantLib::Real (__cdecl *)(QuantLib::Real)>
+                 ]
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\pb532.exe.embed.manifest.res" Debug\pb532_manifest.rc 
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\pb532.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\BelfiusFlexLab2010\Externals\QUANTLIB\QUANTLIB.CPP\build\v100\Debug "QuantLib-v100-mt-gd-0_4_0.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\pb532.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\pb532.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\pb532.lib" /MACHINE:X86 Debug\pb532.exe.embed.manifest.res
+         Debug\pb532.obj
+         Debug\stdafx.obj
+     1>QuantLib-v100-mt-gd-0_4_0.lib(errors.obj) : warning LNK4099: PDB 'quantlib-v100-mt-gd-0_4_0.pdb' was not found with 'QuantLib-v100-mt-gd-0_4_0.lib(errors.obj)' or at 'c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\quantlib-v100-mt-gd-0_4_0.pdb'; linking object as if no debug info
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\pb532.exe.embed.manifest" /manifest Debug\pb532.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\pb532.exe.embed.manifest.res" Debug\pb532_manifest.rc 
+       LinkEmbedManifest:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\pb532.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\BelfiusFlexLab2010\Externals\QUANTLIB\QUANTLIB.CPP\build\v100\Debug "QuantLib-v100-mt-gd-0_4_0.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\pb532.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\pb532.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\pb532.lib" /MACHINE:X86 Debug\pb532.exe.embed.manifest.res
+         Debug\pb532.obj
+         Debug\stdafx.obj
+     1>QuantLib-v100-mt-gd-0_4_0.lib(errors.obj) : warning LNK4099: PDB 'quantlib-v100-mt-gd-0_4_0.pdb' was not found with 'QuantLib-v100-mt-gd-0_4_0.lib(errors.obj)' or at 'c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\quantlib-v100-mt-gd-0_4_0.pdb'; linking object as if no debug info
+         pb532.vcxproj -> c:\users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\Debug\pb532.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\pb532.unsuccessfulbuild".
+         Touching "Debug\pb532.lastbuildstate".
+     1>Done Building Project "c:\Users\loc.finalysegroup\documents\visual studio 2010\Projects\pb532\pb532\pb532.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:19.64
